@@ -2,7 +2,7 @@ import '../model/quiz_questions.dart';
 
 List questions = [
   QuizQuestion(
-    question: 'What are the main building blocks of Flutter UIs?',
+    question: 'What are the main building blocks\nof Flutter UIs?',
     answers: [
       'Widgets',
       'Components',
@@ -30,7 +30,7 @@ List questions = [
 
 
   QuizQuestion(
-    question: 'Which widget should you try to use more often: StatelessWidget or StatefulWidget?',
+    question: 'Which widget should you try to use\nmore often: StatelessWidget or StatefulWidget?',
     answers: [
       'StatelessWidget',
       'StatefulWidget',

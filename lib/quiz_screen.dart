@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/data/questions.dart';
 import 'package:quizapp/questions_screen.dart';
+import 'package:quizapp/result_screen.dart';
 import 'package:quizapp/start_screen.dart';
 
 class Quiz extends StatefulWidget {
@@ -13,16 +15,34 @@ class _QuizState extends State<Quiz> {
 
   Widget? currentScreen;
 
+  List<String> selectedAnswersList = [];
+
+
+  // TODO SWITCH SCREEN
+  void switchScreen(){
+    setState(() {
+      currentScreen = QuestionScreen(onSelectedAnswers: addSelectedAnswers);
+    });
+  }
+
+
+  // TODO ADD ANSWERS IN SELECTEDANSWERLIST FUNCTION
+  void addSelectedAnswers(String answer){
+      selectedAnswersList.add(answer);
+      setState(() {
+        if(selectedAnswersList.length == questions.length){
+          selectedAnswersList = [];
+          currentScreen =  ResultScreen(chosenAnswers: selectedAnswersList,);
+        }
+      });
+  }
+
+
+
   @override
   void initState() {
     currentScreen = StartScreen(switchScreen);
     super.initState();
-  }
-
-  void switchScreen(){
-    setState(() {
-      currentScreen = const QuestionScreen();
-    });
   }
 
 
