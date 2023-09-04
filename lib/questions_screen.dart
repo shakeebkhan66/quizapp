@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizapp/constants/answer_button.dart';
 import 'package:quizapp/data/questions.dart';
+import 'package:quizapp/timer_widget.dart';
 
 class QuestionScreen extends StatefulWidget {
   
@@ -23,12 +26,24 @@ class _QuestionScreenState extends State<QuestionScreen> {
     });
   }
 
+  // TODO Change Question After 15 Seconds
+  changeQuestionsAfterFifteenSecond(){
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
 
 
   @override
   Widget build(BuildContext context) {
 
     final currentQuestion = questions[currentQuestionIndex];
+
+    Timer(const Duration(seconds: 5), () {
+      print("Questions ${questions.length}");
+        answerQuestions("Not Selected");
+    });
+
 
     return SizedBox(
       height: double.infinity,
@@ -38,6 +53,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // TimerWidget(answerQuestionFunc: answerQuestions,),
+            const SizedBox(height: 20.0,),
             Text(
               currentQuestion.question,
               style: GoogleFonts.acme(color: Colors.white, fontSize: 20.0),
